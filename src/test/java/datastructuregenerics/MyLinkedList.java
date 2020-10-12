@@ -29,4 +29,23 @@ public class MyLinkedList
 			head.setNext(myNode);
 		}
 	}
+	
+	public void append(INode myNode)
+	{
+		if(head == null)
+		{
+			head = myNode;
+		}
+		
+		if(tail == null)
+		{
+			tail =myNode;
+		}
+		else 
+		{
+			tail.setNext(myNode);
+			tail = myNode;
+		}
+		
+	}
 }
