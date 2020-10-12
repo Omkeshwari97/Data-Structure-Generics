@@ -95,4 +95,19 @@ public class MyLinkedList
 		
 		return false;
 	}
+
+	public void insertAfter(INode myNode, INode myNewNode) 
+	{
+		INode tempNode1 = head;
+		INode tempNode2 = head.getNext();
+		
+		while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+		{
+			tempNode1 = tempNode1.getNext();
+			tempNode2 = tempNode2.getNext();
+		}
+		
+		tempNode1.setNext(myNewNode);
+		myNewNode.setNext(tempNode2);		
+	}
 }
