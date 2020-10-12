@@ -1,5 +1,6 @@
 package datastructuregenerics;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -92,9 +93,9 @@ public class MyLinkedListTest
 		myLinkedList.append(myFirstNode);
 		myLinkedList.append(myThirdNode);
 		myLinkedList.insert(myFirstNode, mySecondNode);
-		INode head = myLinkedList.popLast();
+		INode tail = myLinkedList.popLast();
 		
-		boolean result = myThirdNode.equals(head); 
+		boolean result = myThirdNode.equals(tail); 
 				
 		assertTrue(result);
 	}
@@ -136,5 +137,31 @@ public class MyLinkedListTest
 							myLinkedList.tail.equals(myFourthNode);
 		
 		assertTrue(result);
+	}
+	
+	@Test
+	public void givenLinkedListDeleteSpecificNumber() 
+	{
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+		
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.append(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.append(myFourthNode);
+		
+		INode head = myLinkedList.popSpecific(myThirdNode);
+		
+		boolean result = myLinkedList.head.equals(myFirstNode)&&
+						myFirstNode.getNext().equals(mySecondNode)&&
+						mySecondNode.getNext().equals(myFourthNode);
+				
+		assertTrue(result);
+		
+		int size =myLinkedList.size();
+		assertEquals(3, size);
 	}
 }

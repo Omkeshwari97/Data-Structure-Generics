@@ -110,4 +110,34 @@ public class MyLinkedList
 		tempNode1.setNext(myNewNode);
 		myNewNode.setNext(tempNode2);		
 	}
+
+	public INode popSpecific(INode myNode) 
+	{
+		INode tempNode1 = head;
+		INode tempNode2 = head;
+		
+		while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+		{
+			tempNode2 = tempNode1;
+			tempNode1 = tempNode1.getNext();
+		}
+		
+		tempNode2.setNext(tempNode1.getNext());
+		
+		return head;
+	}
+
+	public int size() 
+	{
+		INode tempNode = head;
+		int count = 0;
+		
+		while(!tempNode.equals(tail))
+		{
+			count++;
+			tempNode = tempNode.getNext();
+		}
+		
+		return count+1;
+	}
 }
