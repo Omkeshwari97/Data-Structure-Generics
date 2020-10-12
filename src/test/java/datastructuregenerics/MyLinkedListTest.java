@@ -62,4 +62,22 @@ public class MyLinkedListTest
 		
 		assertTrue(result);
 	}
+	
+	@Test
+	public void givenNumberWhenDeletedFromLinkedList() 
+	{
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(70);
+		
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.append(myFirstNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.insert(myFirstNode, mySecondNode);
+		INode head = myLinkedList.pop();
+		
+		boolean result = myFirstNode.equals(head); 
+				
+		assertTrue(result);
+	}
 }
