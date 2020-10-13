@@ -59,9 +59,16 @@ public class MyLinkedList
 
 	public INode pop() 
 	{
-		INode tempNode = head;
-		head = head.getNext();
-		return tempNode;
+		if(head == null)
+		{
+			return null;
+		}
+		else 
+		{
+			INode tempNode = head;
+			head = head.getNext();
+			return tempNode;
+		}
 	}
 
 	public INode popLast() 
@@ -177,7 +184,7 @@ public class MyLinkedList
 	{
 		INode temp = head;
 		
-		if(head == null && tail == null)
+		if(head == null)
 		{
 			System.out.println("Empty List");
 		}
@@ -192,5 +199,4 @@ public class MyLinkedList
 			System.out.print(temp.getKey() + "\n");
 		}
 	}
-	
 }
