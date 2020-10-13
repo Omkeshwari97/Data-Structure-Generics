@@ -109,4 +109,44 @@ public class MyStackQueueTest {
 		assertTrue(result);
 	}
 	
+	@Test
+	public void givenQueueWhenDequeueToDeleteFirstElement() 
+	{
+		INode front, rear;
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(70);
+		
+		MyLinkedList myQueue = new MyLinkedList();
+		myQueue.append(myFirstNode);
+		myQueue.append(mySecondNode);
+		myQueue.append(myThirdNode);
+
+		front = myQueue.head;
+		assertEquals(front, myFirstNode);
+		rear = myQueue.tail;
+		assertEquals(rear, myThirdNode);
+		myQueue.display();
+		assertEquals(3, myQueue.size());		
+		
+		assertEquals(myFirstNode, myQueue.pop());
+		front = myQueue.head;
+		assertEquals(front, mySecondNode);
+		rear = myQueue.tail;
+		assertEquals(rear, myThirdNode);
+		myQueue.display();
+		assertEquals(2, myQueue.size());
+		
+		assertEquals(mySecondNode, myQueue.pop());
+		front = myQueue.head;
+		assertEquals(front, myThirdNode);
+		rear = myQueue.tail;
+		assertEquals(rear, myThirdNode);
+		myQueue.display();
+		assertEquals(1, myQueue.size());
+		
+		assertEquals(myThirdNode, myQueue.pop());
+		myQueue.display();
+		assertEquals(0, myQueue.size());
+	}
 }
