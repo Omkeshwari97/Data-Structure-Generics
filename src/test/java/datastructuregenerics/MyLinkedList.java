@@ -66,6 +66,7 @@ public class MyLinkedList
 		else 
 		{
 			INode tempNode = head;
+			System.out.println("Peek Element: "+head.getKey());
 			head = head.getNext();
 			return tempNode;
 		}
