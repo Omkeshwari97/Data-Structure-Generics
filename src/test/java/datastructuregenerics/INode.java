@@ -1,6 +1,6 @@
 package datastructuregenerics;
 
-public interface INode<T> 
+public interface INode<T extends Comparable> 
 {
 	 void setKey(T key);
 	 T getKey();

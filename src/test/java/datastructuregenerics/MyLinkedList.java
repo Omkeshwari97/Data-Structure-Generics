@@ -4,6 +4,7 @@ public class MyLinkedList
 {
 	public INode head;
 	public INode tail;
+	public Integer max = 0;
 	
 	public MyLinkedList() 
 	{
@@ -73,42 +74,54 @@ public class MyLinkedList
 		}
 		
 		tail = tempNode;
-		return tempNode.getNext();
+		return tempNode;
 	}
 
 	public boolean search(INode myNode) 
 	{
 		INode tempNode = head;
 		boolean  result = true;
+		int index = 1;
 		
 		while(!tempNode.equals(tail))
 		{
 			if(tempNode.getKey().equals(myNode.getKey()))
 			{
+				System.out.println(myNode.getKey() + " is present at " + index + " position");
 				return true;
 			}
 			else 
 			{
 				tempNode = tempNode.getNext();
 			}
+			index++;
 		}
 		
+		System.out.println(myNode.getKey() + " is not present in list");
 		return false;
 	}
 
 	public void insertAfter(INode myNode, INode myNewNode) 
 	{
 		INode tempNode1 = head;
-		INode tempNode2 = head.getNext();
 		
-		while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+		if(head == tail)
 		{
-			tempNode1 = tempNode1.getNext();
-			tempNode2 = tempNode2.getNext();
+			append(myNewNode);
 		}
-		
-		tempNode1.setNext(myNewNode);
-		myNewNode.setNext(tempNode2);		
+		else
+		{
+			INode tempNode2 = head.getNext();
+			
+			while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+			{
+				tempNode1 = tempNode1.getNext();
+				tempNode2 = tempNode2.getNext();
+			}
+			
+			tempNode1.setNext(myNewNode);
+			myNewNode.setNext(tempNode2);		
+		}
 	}
 
 	public INode popSpecific(INode myNode) 
@@ -116,13 +129,21 @@ public class MyLinkedList
 		INode tempNode1 = head;
 		INode tempNode2 = head;
 		
-		while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+		if(head == tail)
 		{
-			tempNode2 = tempNode1;
-			tempNode1 = tempNode1.getNext();
+			head = null;
+			tail = null;
 		}
-		
-		tempNode2.setNext(tempNode1.getNext());
+		else 
+		{
+			while(!tempNode1.getKey().equals(myNode.getKey()) && !tempNode2.equals(tail))
+			{
+				tempNode2 = tempNode1;
+				tempNode1 = tempNode1.getNext();
+			}
+			
+			tempNode2.setNext(tempNode1.getNext());
+		}
 		
 		return head;
 	}
@@ -132,12 +153,44 @@ public class MyLinkedList
 		INode tempNode = head;
 		int count = 0;
 		
-		while(!tempNode.equals(tail))
+		if(head == null)
 		{
-			count++;
-			tempNode = tempNode.getNext();
+			return 0;
+		}	
+		else if(head == tail)
+		{
+			return 1;
+		}
+		else 
+		{	
+			while(!tempNode.equals(tail))
+			{
+				count++;
+				tempNode = tempNode.getNext();
+			}
 		}
 		
 		return count+1;
 	}
+
+	public void display() 
+	{
+		INode temp = head;
+		
+		if(head == null && tail == null)
+		{
+			System.out.println("Empty List");
+		}
+		else 
+		{
+			while(!temp.equals(tail))
+			{
+				System.out.print(temp.getKey() + " -> ");
+				temp = temp.getNext();
+			}
+			
+			System.out.print(temp.getKey() + "\n");
+		}
+	}
+	
 }
