@@ -197,4 +197,32 @@ public class MyLinkedListTest
 		int size =myLinkedList.size();
 		assertEquals(0, size);
 	}
+	
+	@Test
+	public void givenNumberWhenAddedToLinkedListTobeInSortedOrder() 
+	{
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+		
+		SortedLinkedList myLinkedList = new SortedLinkedList();
+		myLinkedList.create(myFirstNode);
+		myLinkedList.display();
+		myLinkedList.create(mySecondNode);
+		myLinkedList.display();
+		myLinkedList.create(myThirdNode);
+		myLinkedList.display();
+		myLinkedList.create(myFourthNode);
+		myLinkedList.display();
+		
+		boolean result = myLinkedList.head.equals(mySecondNode)&&
+							mySecondNode.getNext().equals(myThirdNode)&&
+							myThirdNode.getNext().equals(myFirstNode)&&
+							myLinkedList.tail.equals(myFourthNode);
+		
+		assertTrue(result);
+		assertEquals(myLinkedList.tail, myFourthNode);
+		assertEquals(myLinkedList.head, mySecondNode);
+	}
 }
